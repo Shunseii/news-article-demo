@@ -2,6 +2,19 @@
 	float: right;
 }
 
+#likesMeter {
+	color: green;
+	float: right;
+}
+
+#dateHeader {
+	float: right;
+}
+
+#articleContent {
+	text-align: center;
+}
+
 i.icon.newspaper.outline {
 	font-size: 2em;
 }

@@ -4,21 +4,35 @@
 	<div class="ui huge header">
 		<%= article.title %>	
 		<div id="buttons">
-			<a class="ui orange inverted button" href="/articles/<%= article._id %>/edit">Edit</a>
+			<a class="ui orange small basic button" href="/articles/<%= article._id %>/edit">Edit</a>
 			<form id="deleteForm" method="POST" action="/articles/<%= article._id %>?_method=DELETE">
-				<button class="ui red inverted button">Delete</button>
+				<button class="ui red small basic button">Delete</button>
 			</form>
 		</div>
 	</div>
 	<div class="top attached">
 		<div class="item">
-			<img class="ui centered rounded image" src="<%= article.image %>">
 			<div class="content">
-				<span>Published <%= article.created.toDateString() %></span>
-			</div>
-			<div class="ui divider"></div>
-			<div class="description">
-				<p><%- article.content %></p>
+				<div class="content">
+					<h3 class="ui header"><%= article.author %></h3>
+					<div class="meta">
+						<span class="ui small header"><%= article.category %></span>
+						<span id="dateHeader"><%= article.created.toDateString() %></span>
+					</div>
+				</div>
+				<div class="ui divider"></div>
+				<img class="ui centered rounded image" src="<%= article.image %>">
+				<div class="ui divider"></div>
+				<div class="description">
+					<p id="articleContent"><%- article.content %></p>
+				</div>
+				<div class="ui divider"></div>
+				<div class="ui labeled button">
+					<div class="ui button">
+						<i class="thumbs up icon"></i>
+					</div>
+					<a class="ui basic label"><%= article.like %></a>
+				</div>
 			</div>
 		</div>
 	</div>
