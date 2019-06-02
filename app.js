@@ -113,7 +113,7 @@ app.delete("/articles/:id", function(req, res) {
 			res.redirect("/articles");
 		}
 	});
-};
+});
 
 // Root Route
 app.get("/", function(req, res) {
