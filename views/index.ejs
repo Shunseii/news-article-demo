@@ -12,7 +12,8 @@
 					<div class="content">
 						<a class="header" href="/articles/<%= articles[i]._id %>"><%= articles[i].title %></a>
 						<div class="meta">
-							<div id="category">Category: <strong>Environment</strong> </div>
+							<div id="author"><strong><%= articles[i].author %></strong></div>
+							<div id="category">Category: <strong><%= articles[i].category %></strong> </div>
 							<div id="createdDate">Published: <strong><%= articles[i].created.toDateString() %></strong></div>
 						</div>
 						<div class="description">	
