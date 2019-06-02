@@ -1,14 +1,33 @@
-<% include partials/header.ejs %>
+<% include partials/header %>
 
 <div class="ui main container">
-	<h1>Index Page</h1>
-
-	<% for (var i = 0; i < articles.length; ++i) { %>
-		<h4><%= articles[i].title %></h4>
-		<img src="<%= articles[i].image %>">
-		<p><%- articles[i].content %></p>
-		<a href="/articles/<%= articles[i]._id %>">Read More</a>
-	<% } %>
+	<div class="ui huge header">News Articles</div>
+	<div class="ui top attached segment">
+		<div class="ui divided items">
+			<% for (var i = 0; i < articles.length; ++i) { %>
+				<div class="item">
+					<div class="image">	
+						<img src="<%= articles[i].image %>">
+					</div>
+					<div class="content">
+						<a class="header" href="/articles/<%= articles[i]._id %>"><%= articles[i].title %></a>
+						<div class="meta">
+							<div id="category">Category: <strong>Environment</strong> </div>
+							<div id="createdDate">Published: <strong><%= articles[i].created.toDateString() %></strong></div>
+						</div>
+						<div class="description">	
+							<p><%- articles[i].content.substring(0, 200) %>...</p>
+						</div>
+						<div class="extra">	
+							<a class="ui floated blue inverted small button" href="/articles/<%= articles[i]._id %>">
+								Read More
+							</a>
+						</div>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</div>
 </div>
 
-<% include partials/footer.ejs %>
+<% include partials/footer %>
