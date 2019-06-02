@@ -54,7 +54,14 @@ app.get("/articles", function(req, res) {
 
 // Create Route
 app.post("/articles", function(req, res) {
-	res.send("THIS IS A POST REQUEST");
+	Article.create(req.body.article, function(err, article) {
+		if (err) {
+			console.log(err);
+			res.render("new");
+		} else {
+			res.redirect("/articles");
+		}
+	});
 });
 
 // New Route
