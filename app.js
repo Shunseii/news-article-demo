@@ -52,6 +52,16 @@ app.get("/articles", function(req, res) {
 	});
 });
 
+// Create Route
+app.post("/articles", function(req, res) {
+	res.send("THIS IS A POST REQUEST");
+});
+
+// New Route
+app.get("/articles/new", function(req, res) {
+	res.render("new");
+});
+
 // Root Route
 app.get("/", function(req, res) {
 	res.redirect("/articles");
