@@ -104,6 +104,17 @@ app.put("/articles/:id", function(req, res) {
 	});
 });
 
+// Delete Route
+app.delete("/articles/:id", function(req, res) {
+	Article.findByIdAndRemove(req.params.id, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect("/articles");
+		}
+	});
+};
+
 // Root Route
 app.get("/", function(req, res) {
 	res.redirect("/articles");
