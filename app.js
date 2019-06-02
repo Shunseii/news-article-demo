@@ -94,7 +94,15 @@ app.get("/articles/:id/edit", function(req, res) {
 });
 
 // Update Route
-
+app.put("/articles/:id", function(req, res) {
+	Article.findByIdAndUpdate(req.params.id, req.body.article, function(err, article) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect("/articles/" + req.params.id);
+		}
+	});
+});
 
 // Root Route
 app.get("/", function(req, res) {
