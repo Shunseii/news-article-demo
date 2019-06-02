@@ -106,6 +106,16 @@ app.put("/articles/:id", function(req, res) {
 	});
 });
 
+app.put("/articles/:id/like", function(req, res) {
+	Article.findByIdAndUpdate(req.params.id, {$inc: {like: 1}},function(err, article) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect("/articles/" + req.params.id);
+		}
+	});
+});
+
 // Delete Route
 app.delete("/articles/:id", function(req, res) {
 	Article.findByIdAndRemove(req.params.id, function(err) {

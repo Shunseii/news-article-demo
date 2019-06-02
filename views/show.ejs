@@ -27,12 +27,14 @@
 					<p id="articleContent"><%- article.content %></p>
 				</div>
 				<div class="ui divider"></div>
-				<div class="ui labeled button">
-					<div class="ui button">
-						<i class="thumbs up icon"></i>
+				<form method="POST" action="/articles/<%= article._id %>/like?_method=PUT">
+					<div class="ui labeled button">
+						<button class="ui button">
+							<i class="thumbs up icon"></i>
+						</button>
+						<a class="ui basic label"><%= article.like %></a>
 					</div>
-					<a class="ui basic label"><%= article.like %></a>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
