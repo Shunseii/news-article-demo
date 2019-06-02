@@ -1,11 +1,14 @@
 <% include partials/header.ejs %>
 
-<h1>Index Page</h1>
+<div class="ui main container">
+	<h1>Index Page</h1>
 
-<% for (var i = 0; i < articles.length; ++i) { %>
-	<h4><%= articles[i].title %></h4>
-	<img src="<%= articles[i].image %>">
-	<p><%= articles[i].content %></p>
-<% } %>
+	<% for (var i = 0; i < articles.length; ++i) { %>
+		<h4><%= articles[i].title %></h4>
+		<img src="<%= articles[i].image %>">
+		<p><%- articles[i].content %></p>
+		<a href="/articles/<%= articles[i]._id %>">Read More</a>
+	<% } %>
+</div>
 
 <% include partials/footer.ejs %>

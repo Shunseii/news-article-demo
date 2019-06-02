@@ -1,7 +1,8 @@
-var express 	= require('express'),
-	bodyParser 	= require('body-parser'),
-	mongoose 	= require('mongoose'),
-	app 		= express();
+var express 		= require('express'),
+	bodyParser 		= require('body-parser'),
+	mongoose 		= require('mongoose'),
+	methodOverride 	= require('method-override'),
+	app 			= express();
 
 // APP CONFIG
 mongoose.set("useNewUrlParser", true);
@@ -10,6 +11,7 @@ mongoose.connect("mongodb://localhost/news_site");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 
@@ -68,6 +70,31 @@ app.post("/articles", function(req, res) {
 app.get("/articles/new", function(req, res) {
 	res.render("new");
 });
+
+// Show Route
+app.get("/articles/:id", function(req, res) {
+	Article.findById(req.params.id, function(err, article) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("show", {article: article});
+		}
+	});
+});
+
+// Edit Route
+app.get("/articles/:id/edit", function(req, res) {
+	Article.findById(req.params.id, function(err, article) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("edit", {article: article});
+		}
+	});
+});
+
+// Update Route
+
 
 // Root Route
 app.get("/", function(req, res) {
