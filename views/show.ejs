@@ -1,20 +1,25 @@
 <% include partials/header %>
 
-<div class="ui main text container segment">
-	<div class="ui huge header"><%= article.title %></div>
-	<div class="top attached">
-		<div class="item">
-			<img class="ui centered rounded image" src="<%= article.image %>">
-			<div class="content">
-				<span><%= article.created.toDateString() %></span>
-			</div>
-			<div class="description">
-				<p><%- article.content %></p>
-			</div>
+<div class="ui main text container padded segment">
+	<div class="ui huge header">
+		<%= article.title %>	
+		<div id="buttons">
 			<a class="ui orange inverted button" href="/articles/<%= article._id %>/edit">Edit</a>
 			<form id="deleteForm" method="POST" action="/articles/<%= article._id %>?_method=DELETE">
 				<button class="ui red inverted button">Delete</button>
 			</form>
+		</div>
+	</div>
+	<div class="top attached">
+		<div class="item">
+			<img class="ui centered rounded image" src="<%= article.image %>">
+			<div class="content">
+				<span>Published <%= article.created.toDateString() %></span>
+			</div>
+			<div class="ui divider"></div>
+			<div class="description">
+				<p><%- article.content %></p>
+			</div>
 		</div>
 	</div>
 </div>

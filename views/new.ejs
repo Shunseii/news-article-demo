@@ -5,8 +5,18 @@
 
 	<form class="ui form" action="/articles" method="POST">
 		<div class="field">
-			<label>Article Title</label>
+			<label>Article Title*</label>
 			<input type="text" name="article[title]">
+		</div>
+		
+		<div class="field">
+			<label>Author*</label>
+			<input type="text" name="article[author]">
+		</div>
+		
+		<div class="field">
+			<label>Category*</label>
+			<input type="text" name="article[category]">
 		</div>
 
 		<div class="field">
@@ -15,11 +25,11 @@
 		</div>
 
 		<div class="field">
-			<label>Content</label>
+			<label>Content*</label>
 			<textarea name="article[content]"></textarea>
 		</div>
 
-		<input type="submit" value="Submit"> 
+		<input class="ui primary basic button" type="submit" value="Submit"> 
 	</form>
 </div>
 

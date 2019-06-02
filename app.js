@@ -21,6 +21,8 @@ var articleSchema = new mongoose.Schema(
 		title: String,
 		image: String,
 		content: String,
+		author: String,
+		category: String,
 		like: 
 		{
 			type: Number,
