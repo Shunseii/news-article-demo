@@ -1,8 +1,9 @@
-var express 		= require('express'),
-	bodyParser 		= require('body-parser'),
-	mongoose 		= require('mongoose'),
-	methodOverride 	= require('method-override'),
-	app 			= express();
+var express 			= require('express'),
+	bodyParser 			= require('body-parser'),
+	mongoose 			= require('mongoose'),
+	methodOverride 		= require('method-override'),
+	expressSanitizer 	= require('express-sanitizer'),
+	app 				= express();
 
 // APP CONFIG
 mongoose.set("useNewUrlParser", true);
@@ -12,6 +13,7 @@ mongoose.connect("mongodb://localhost/news_site");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+app.use(expressSanitizer());
 
 app.set("view engine", "ejs");
 
@@ -58,6 +60,8 @@ app.get("/articles", function(req, res) {
 
 // Create Route
 app.post("/articles", function(req, res) {
+	req.body.article.content = req.sanitize(req.body.article.content);
+
 	Article.create(req.body.article, function(err, article) {
 		if (err) {
 			console.log(err);
@@ -96,7 +100,9 @@ app.get("/articles/:id/edit", function(req, res) {
 });
 
 // Update Route
-app.put("/articles/:id", function(req, res) {
+app.put("/articles/:id", function(req, res) {	
+	req.body.article.content = req.sanitize(req.body.article.content);
+
 	Article.findByIdAndUpdate(req.params.id, req.body.article, function(err, article) {
 		if (err) {
 			console.log(err);
