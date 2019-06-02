@@ -43,7 +43,13 @@ var Article = mongoose.model("Article", articleSchema);
 
 // Index Route
 app.get("/articles", function(req, res) {
-	res.render("index");
+	Article.find({}, function(err, articles) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("index", {articles: articles});
+		}
+	});
 });
 
 // Root Route
