@@ -17,6 +17,8 @@ app.use(expressSanitizer());
 
 app.set("view engine", "ejs");
 
+// TODO Add user auth and modify schema
+
 // MONGOOSE/MODEL CONFIG
 var articleSchema = new mongoose.Schema(
 	{
@@ -114,6 +116,16 @@ app.put("/articles/:id", function(req, res) {
 
 app.put("/articles/:id/like", function(req, res) {
 	Article.findByIdAndUpdate(req.params.id, {$inc: {like: 1}},function(err, article) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect("/articles/" + req.params.id);
+		}
+	});
+});
+
+app.put("/articles/:id/dislike", function(req, res) {
+	Article.findByIdAndUpdate(req.params.id, {$inc: {like: -1}},function(err, article) {
 		if (err) {
 			console.log(err);
 		} else {
